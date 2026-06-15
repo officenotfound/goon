@@ -119,7 +119,6 @@ export default function Home() {
   return (
     <>
       <style>{`
-        * { cursor: none !important; }
         @keyframes floatA { 0%,100% { transform: translateY(0px); } 50% { transform: translateY(-8px); } }
         @keyframes floatB { 0%,100% { transform: translateY(0px); } 50% { transform: translateY(-6px); } }
         @keyframes floatC { 0%,100% { transform: translateY(0px); } 50% { transform: translateY(-10px); } }
