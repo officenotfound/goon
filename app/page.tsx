@@ -168,7 +168,7 @@ export default function Home() {
             }}>
               {/* Go on — same line, gap breathes closed to briefly read "Goon" */}
               <div style={{ display: "flex", alignItems: "baseline", lineHeight: 0.9 }}>
-                <span style={{ color: t.text, transition: "color 0.5s", animation: heroIn ? "goonMerge 18s cubic-bezier(0.45,0,0.55,1) infinite" : "none" }}>Go</span>
+                <span style={{ color: t.text, transition: "color 0.5s", animation: heroIn ? "goonMerge 38s cubic-bezier(0.45,0,0.55,1) infinite" : "none" }}>Go</span>
                 <span style={{ color: t.gold, fontStyle: "italic", transition: "color 0.5s" }}>on</span>
               </div>
               {/* PR — smaller, sits below */}
