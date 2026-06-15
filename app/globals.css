@@ -1,0 +1,58 @@
+@import "tailwindcss";
+@import "@fontsource/cormorant-garamond/300.css";
+@import "@fontsource/cormorant-garamond/400.css";
+@import "@fontsource/cormorant-garamond/400-italic.css";
+@import "@fontsource/cormorant-garamond/500.css";
+@import "@fontsource/cormorant-garamond/600.css";
+
+:root {
+  --gold: #b8966e;
+  --gold-light: #d4b896;
+  --black: #0c0c0c;
+  --off-white: #e8e4de;
+  --muted: #6b6560;
+  --rule: rgba(184, 150, 110, 0.25);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--black);
+  color: var(--off-white);
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-weight: 300;
+  letter-spacing: 0.01em;
+  -webkit-font-smoothing: antialiased;
+}
+
+::selection {
+  background: var(--gold);
+  color: var(--black);
+}
+
+.label {
+  font-size: 0.65rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--gold);
+  font-weight: 400;
+}
+
+.rule {
+  border: none;
+  border-top: 1px solid var(--rule);
+  width: 40px;
+  margin: 0 auto;
+}
+
+.rule-full {
+  border: none;
+  border-top: 1px solid var(--rule);
+  width: 100%;
+}
