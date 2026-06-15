@@ -118,7 +118,7 @@ export default function Home() {
             fontWeight: 300,
           }}>
             <div style={{ fontSize: "clamp(5rem, 18vw, 20rem)", color: t.text, transition: "color 0.5s" }}>Go</div>
-            <div style={{ fontSize: "clamp(1.9rem, 7vw, 7.6rem)", color: t.gold, fontStyle: "italic", transition: "color 0.5s" }}>on</div>
+            <div style={{ fontSize: "clamp(5rem, 18vw, 20rem)", color: t.gold, fontStyle: "italic", transition: "color 0.5s" }}>on</div>
             <div style={{ fontSize: "clamp(5rem, 18vw, 20rem)", color: t.text, transition: "color 0.5s" }}>PR</div>
           </div>
         </div>
