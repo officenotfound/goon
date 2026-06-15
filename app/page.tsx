@@ -174,14 +174,14 @@ export default function Home() {
           <p style={{ fontSize:"clamp(1.6rem, 3.5vw, 3rem)", fontWeight:400, lineHeight:1.3, color:t.text, marginBottom:"3rem", transition:"color 0.5s" }}>
             Introductions by referral<br />or direct invitation.
           </p>
-          <a href="mailto:Dorian.batycka@gmail.com" style={{
+          <a href="mailto:Dorian@goonpr.com" style={{
             fontSize:"0.6rem", letterSpacing:"0.2em", textTransform:"uppercase",
             color:t.muted, textDecoration:"none", transition:"color 0.4s",
           }}
             onMouseEnter={e => e.currentTarget.style.color = t.text}
             onMouseLeave={e => e.currentTarget.style.color = t.muted}
           >
-            Dorian.batycka@gmail.com
+            Dorian@goonpr.com
           </a>
         </section>
 
