@@ -157,7 +157,7 @@ export default function Home() {
 
 
         {/* ── Contact ── */}
-        <section style={{ padding:"0 2.8rem 20rem" }}>
+        <section style={{ padding:"0 2.8rem 6rem" }}>
           <p style={{ fontFamily:SERIF, fontSize:"clamp(1.6rem, 3.5vw, 3rem)", fontWeight:400, lineHeight:1.3, color:t.text, marginBottom:"3rem", transition:"color 0.6s" }}>
             Introductions by referral<br />or direct invitation.
           </p>
