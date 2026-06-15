@@ -119,9 +119,19 @@ export default function Home() {
   return (
     <>
       <style>{`
-        @keyframes goDown  { 0%,100% { transform: translateY(0px); } 50% { transform: translateY(14px); } }
-        @keyframes onUp    { 0%,100% { transform: translateY(0px); } 50% { transform: translateY(-14px); } }
-        @keyframes ticker  { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+        @keyframes goDown {
+          0%, 30%, 70%, 100% { transform: translateY(0px); }
+          50% { transform: translateY(32px); }
+        }
+        @keyframes onUp {
+          0%, 30%, 70%, 100% { transform: translateY(0px); }
+          50% { transform: translateY(-32px); }
+        }
+        @keyframes prDrift {
+          0%, 30%, 70%, 100% { transform: translateY(0px); }
+          50% { transform: translateY(18px); }
+        }
+        @keyframes ticker { from { transform: translateX(0); } to { transform: translateX(-50%); } }
       `}</style>
 
       <Cursor color={t.gold} />
@@ -156,19 +166,22 @@ export default function Home() {
         {/* HERO */}
         <section style={{ height: "100svh", display: "flex", flexDirection: "column", justifyContent: "flex-end", padding: "0 2.8rem 3rem" }}>
           <div style={{ flex: 1, display: "flex", flexDirection: "column", justifyContent: "center" }}>
-            <h1 style={{
+            <div style={{
               fontSize: "clamp(5rem, 18vw, 20rem)",
               fontWeight: 400,
-              lineHeight: 0.75,
               letterSpacing: "-0.02em",
               opacity: heroIn ? 1 : 0,
               transition: "opacity 2s cubic-bezier(0.16,1,0.3,1) 200ms",
               userSelect: "none",
             }}>
-              <span style={{ display: "block", color: t.text, transition: "color 0.5s", animation: heroIn ? "goDown 5s ease-in-out infinite" : "none", willChange: "transform" }}>Go</span>
-              <span style={{ display: "block", color: t.gold, fontStyle: "italic", transition: "color 0.5s", animation: heroIn ? "onUp 5s ease-in-out infinite" : "none", willChange: "transform" }}>on</span>
-              <span style={{ display: "block", fontSize: "0.65em", color: t.text, transition: "color 0.5s" }}>PR</span>
-            </h1>
+              {/* Go + on breathe together — briefly reads as "Goon" */}
+              <div style={{ lineHeight: 0.82 }}>
+                <span style={{ display: "block", color: t.text, transition: "color 0.5s", animation: heroIn ? "goDown 9s cubic-bezier(0.45,0,0.55,1) infinite" : "none", willChange: "transform" }}>Go</span>
+                <span style={{ display: "block", color: t.gold, fontStyle: "italic", transition: "color 0.5s", animation: heroIn ? "onUp 9s cubic-bezier(0.45,0,0.55,1) infinite" : "none", willChange: "transform" }}>on</span>
+              </div>
+              {/* PR — smaller, pushed down, drifts with the motion */}
+              <span style={{ display: "block", fontSize: "0.55em", color: t.text, marginTop: "0.55em", letterSpacing: "0.02em", transition: "color 0.5s", animation: heroIn ? "prDrift 9s cubic-bezier(0.45,0,0.55,1) infinite" : "none", willChange: "transform" }}>PR</span>
+            </div>
           </div>
 
           <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-end", opacity: heroIn ? 1 : 0, transition: "opacity 2.2s 1s" }}>
