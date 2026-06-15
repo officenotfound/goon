@@ -111,7 +111,7 @@ export default function Home() {
           <h1 style={{
             fontSize: "clamp(5rem, 18vw, 20rem)",
             fontWeight: 300,
-            lineHeight: 1,
+            lineHeight: 0.75,
             letterSpacing: "-0.02em",
             opacity: heroIn ? 1 : 0,
             transition: "opacity 2s cubic-bezier(0.16,1,0.3,1) 200ms",
