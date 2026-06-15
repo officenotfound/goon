@@ -77,7 +77,7 @@ export default function Home() {
   void tr;
 
   return (
-    <main style={{ background: t.bg, color: t.text, fontFamily: "'Cormorant Garamond', Georgia, serif", overflowX: "hidden", transition: "background 0.5s, color 0.5s" }}>
+    <main style={{ background: t.bg, color: t.text, fontFamily: "var(--font-instrument), 'Instrument Serif', Georgia, serif", overflowX: "hidden", transition: "background 0.5s, color 0.5s" }}>
 
       {/* NAV */}
       <nav style={{
@@ -96,7 +96,7 @@ export default function Home() {
         <button onClick={toggle} style={{
           background: "none", border: "none", cursor: "pointer", padding: 0,
           fontSize: "0.6rem", letterSpacing: "0.25em", textTransform: "uppercase",
-          color: t.dim, fontFamily: "'Cormorant Garamond', Georgia, serif", transition: "color 0.4s",
+          color: t.dim, fontFamily: "var(--font-instrument), 'Instrument Serif', Georgia, serif", transition: "color 0.4s",
         }}
           onMouseEnter={e => (e.currentTarget.style.color = t.sub)}
           onMouseLeave={e => (e.currentTarget.style.color = t.dim)}
