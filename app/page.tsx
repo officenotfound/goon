@@ -172,7 +172,7 @@ export default function Home() {
                 <span style={{ color: t.gold, fontStyle: "italic", transition: "color 0.5s" }}>on</span>
               </div>
               {/* PR — smaller, sits below */}
-              <span style={{ display: "block", fontSize: "0.42em", color: t.text, marginTop: "0.2em", letterSpacing: "0.02em", transition: "color 0.5s" }}>PR</span>
+              <span style={{ display: "block", fontSize: "0.35em", color: t.text, marginTop: "0.2em", marginLeft: "0.35em", letterSpacing: "0.02em", transition: "color 0.5s" }}>PR</span>
             </div>
           </div>
 
