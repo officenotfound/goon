@@ -111,17 +111,20 @@ export default function Home() {
           <h1 style={{
             fontSize: "clamp(5rem, 18vw, 20rem)",
             fontWeight: 300,
-            lineHeight: 0.88,
+            lineHeight: 1,
             letterSpacing: "-0.02em",
-            color: t.text,
             opacity: heroIn ? 1 : 0,
-            transform: heroIn ? "none" : "translateY(50px)",
-            transition: "opacity 2s cubic-bezier(0.16,1,0.3,1) 200ms, transform 2s cubic-bezier(0.16,1,0.3,1) 200ms, color 0.5s",
+            transition: "opacity 2s cubic-bezier(0.16,1,0.3,1) 200ms",
             userSelect: "none",
           }}>
-            Go<br />
-            <em style={{ color: t.gold, fontStyle: "italic", transition: "color 0.5s" }}>on</em><br />
-            PR
+            <style>{`
+              @keyframes floatA { 0%,100% { transform: translateY(0px); } 50% { transform: translateY(-8px); } }
+              @keyframes floatB { 0%,100% { transform: translateY(0px); } 50% { transform: translateY(-6px); } }
+              @keyframes floatC { 0%,100% { transform: translateY(0px); } 50% { transform: translateY(-10px); } }
+            `}</style>
+            <span style={{ display: "block", color: t.text, transition: "color 0.5s", animation: heroIn ? "floatA 7s ease-in-out infinite" : "none", willChange: "transform" }}>Go</span>
+            <span style={{ display: "block", color: t.gold, fontStyle: "italic", transition: "color 0.5s", animation: heroIn ? "floatB 7s ease-in-out 0.4s infinite" : "none", willChange: "transform" }}>on</span>
+            <span style={{ display: "block", color: t.text, transition: "color 0.5s", animation: heroIn ? "floatC 7s ease-in-out 0.8s infinite" : "none", willChange: "transform" }}>PR</span>
           </h1>
         </div>
 
