@@ -1,331 +1,305 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
-const SELECTED_WORK = [
-  {
-    client: "Niclas Castello",
-    project: "La diabolica commedia",
-    context: "Art Basel 2026 · Venice Biennale 2026",
-  },
-];
+function Reveal({ children, delay = 0, className = "" }: { children: React.ReactNode; delay?: number; className?: string }) {
+  const ref = useRef<HTMLDivElement>(null);
+  const [visible, setVisible] = useState(false);
 
-const PRESS_OUTLETS = [
-  "Artforum",
-  "The Art Newspaper",
-  "Artnet",
-  "Hyperallergic",
-  "Decrypt",
-  "crypto.news",
-];
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+    const obs = new IntersectionObserver(
+      ([entry]) => { if (entry.isIntersecting) { setVisible(true); obs.disconnect(); } },
+      { threshold: 0.15 }
+    );
+    obs.observe(el);
+    return () => obs.disconnect();
+  }, []);
+
+  return (
+    <div
+      ref={ref}
+      className={className}
+      style={{
+        opacity: visible ? 1 : 0,
+        transform: visible ? "translateY(0)" : "translateY(28px)",
+        transition: `opacity 1.2s cubic-bezier(0.16,1,0.3,1) ${delay}ms, transform 1.2s cubic-bezier(0.16,1,0.3,1) ${delay}ms`,
+      }}
+    >
+      {children}
+    </div>
+  );
+}
 
 export default function Home() {
   const [submitted, setSubmitted] = useState(false);
-  const [form, setForm] = useState({ name: "", organization: "", email: "", message: "" });
+  const [email, setEmail] = useState("");
+  const [name, setName] = useState("");
+  const [note, setNote] = useState("");
+  const [heroVisible, setHeroVisible] = useState(false);
 
-  function handleSubmit(e: React.FormEvent) {
-    e.preventDefault();
-    setSubmitted(true);
-  }
+  useEffect(() => {
+    const t = setTimeout(() => setHeroVisible(true), 100);
+    return () => clearTimeout(t);
+  }, []);
 
   return (
-    <main style={{ background: "var(--black)", color: "var(--off-white)" }} className="min-h-screen">
+    <main style={{ background: "#0a0a0a", color: "#e2ddd6", fontFamily: "'Cormorant Garamond', Georgia, serif", overflowX: "hidden" }}>
 
-      {/* NAV */}
-      <nav className="fixed top-0 left-0 right-0 z-50 flex items-center justify-between px-10 py-7"
-        style={{ background: "linear-gradient(to bottom, rgba(12,12,12,0.95) 0%, transparent 100%)" }}>
-        <span className="label" style={{ letterSpacing: "0.3em" }}>GO ON PR</span>
-        <a href="#inquire" className="label" style={{ color: "var(--gold)", letterSpacing: "0.2em" }}>
-          Inquire
-        </a>
-      </nav>
+      {/* HERO — full viewport, just the name */}
+      <section style={{ height: "100svh", display: "flex", flexDirection: "column", justifyContent: "space-between", padding: "2.5rem 2.8rem" }}>
+        <div style={{
+          opacity: heroVisible ? 1 : 0,
+          transition: "opacity 2s cubic-bezier(0.16,1,0.3,1) 200ms",
+        }}>
+          <span style={{ fontSize: "0.62rem", letterSpacing: "0.28em", textTransform: "uppercase", color: "#9a8c7e" }}>
+            Paris · Est. 2026
+          </span>
+        </div>
 
-      {/* HERO */}
-      <section className="flex flex-col items-center justify-center text-center px-6"
-        style={{ minHeight: "100vh", paddingTop: "10rem", paddingBottom: "8rem" }}>
-        <p className="label mb-8" style={{ letterSpacing: "0.25em" }}>Paris · Est. 2026</p>
-        <hr className="rule mb-10" />
-        <h1 style={{
-          fontFamily: "'Cormorant Garamond', Georgia, serif",
-          fontSize: "clamp(3rem, 8vw, 7rem)",
-          fontWeight: 300,
-          lineHeight: 1.05,
-          letterSpacing: "0.02em",
-          color: "var(--off-white)",
-          maxWidth: "820px",
-        }}>
-          Private communications<br />
-          <em style={{ fontWeight: 400, color: "var(--gold-light)" }}>for those who shape culture.</em>
-        </h1>
-        <hr className="rule mt-10 mb-12" />
-        <p style={{
-          fontFamily: "'Cormorant Garamond', Georgia, serif",
-          fontSize: "clamp(1.1rem, 2vw, 1.35rem)",
-          fontWeight: 300,
-          color: "var(--muted)",
-          maxWidth: "540px",
-          lineHeight: 1.8,
-          letterSpacing: "0.02em",
-        }}>
-          Go On PR is a boutique communications agency at the intersection of contemporary art,
-          institutional culture, and emerging markets. We represent artists, collectors, and
-          cultural institutions whose work demands discretion and precision.
-        </p>
-        <a href="#inquire" style={{
-          display: "inline-block",
-          marginTop: "3.5rem",
-          padding: "0.85rem 2.5rem",
-          border: "1px solid var(--gold)",
-          color: "var(--gold)",
-          fontFamily: "'Cormorant Garamond', Georgia, serif",
-          fontSize: "0.7rem",
-          letterSpacing: "0.25em",
-          textTransform: "uppercase",
-          textDecoration: "none",
-          transition: "background 0.3s, color 0.3s",
-        }}
-          onMouseEnter={e => {
-            (e.target as HTMLElement).style.background = "var(--gold)";
-            (e.target as HTMLElement).style.color = "var(--black)";
-          }}
-          onMouseLeave={e => {
-            (e.target as HTMLElement).style.background = "transparent";
-            (e.target as HTMLElement).style.color = "var(--gold)";
+        <div>
+          <h1 style={{
+            fontSize: "clamp(4.5rem, 16vw, 18rem)",
+            fontWeight: 300,
+            lineHeight: 0.9,
+            letterSpacing: "-0.01em",
+            color: "#e2ddd6",
+            opacity: heroVisible ? 1 : 0,
+            transform: heroVisible ? "none" : "translateY(40px)",
+            transition: "opacity 1.8s cubic-bezier(0.16,1,0.3,1) 400ms, transform 1.8s cubic-bezier(0.16,1,0.3,1) 400ms",
           }}>
-          Request Introduction
-        </a>
+            Go<br />
+            <em style={{ color: "#b8966e", fontStyle: "italic", fontWeight: 300 }}>On</em><br />
+            PR
+          </h1>
+        </div>
+
+        <div style={{
+          display: "flex",
+          justifyContent: "space-between",
+          alignItems: "flex-end",
+          opacity: heroVisible ? 1 : 0,
+          transition: "opacity 2s cubic-bezier(0.16,1,0.3,1) 900ms",
+        }}>
+          <p style={{ fontSize: "0.62rem", letterSpacing: "0.22em", textTransform: "uppercase", color: "#5a5248", maxWidth: "280px", lineHeight: 1.8 }}>
+            Private communications<br />for artists and institutions
+          </p>
+          <a href="#work" style={{ fontSize: "0.62rem", letterSpacing: "0.22em", textTransform: "uppercase", color: "#9a8c7e", textDecoration: "none", borderBottom: "1px solid #3a3530" }}>
+            Enter ↓
+          </a>
+        </div>
       </section>
 
-      {/* DIVIDER */}
-      <div className="px-10"><hr className="rule-full" /></div>
+      {/* RULE */}
+      <div style={{ borderTop: "1px solid #1e1b18", margin: "0 2.8rem" }} />
+
+      {/* MANIFESTO */}
+      <section id="work" style={{ padding: "12rem 2.8rem", maxWidth: "1100px" }}>
+        <Reveal>
+          <p style={{ fontSize: "0.62rem", letterSpacing: "0.28em", textTransform: "uppercase", color: "#b8966e", marginBottom: "4rem" }}>
+            On the work
+          </p>
+        </Reveal>
+        <Reveal delay={100}>
+          <p style={{
+            fontSize: "clamp(1.8rem, 4.5vw, 4rem)",
+            fontWeight: 300,
+            lineHeight: 1.25,
+            letterSpacing: "0.01em",
+            color: "#c8c0b4",
+            maxWidth: "900px",
+          }}>
+            We represent the artists, institutions, and collectors who shape what culture becomes —
+            not after the fact, but{" "}
+            <em style={{ color: "#e2ddd6", fontStyle: "italic" }}>at the precise moment it is being made.</em>
+          </p>
+        </Reveal>
+        <Reveal delay={200}>
+          <p style={{
+            fontSize: "1rem",
+            fontWeight: 300,
+            lineHeight: 2,
+            color: "#5a5248",
+            marginTop: "4rem",
+            maxWidth: "520px",
+            letterSpacing: "0.02em",
+          }}>
+            Go On PR is the practice of Dorian Batycka — journalist, curator, and editor
+            across Artforum, The Art Newspaper, Artnet, and crypto.news. A boutique of one,
+            working at the intersection of fine art, institutional culture, and emerging markets.
+          </p>
+        </Reveal>
+      </section>
+
+      {/* RULE */}
+      <div style={{ borderTop: "1px solid #1e1b18", margin: "0 2.8rem" }} />
 
       {/* SELECTED WORK */}
-      <section className="px-10 py-28 max-w-4xl mx-auto">
-        <p className="label mb-12" style={{ letterSpacing: "0.25em" }}>Selected Work</p>
-        {SELECTED_WORK.map((item, i) => (
-          <div key={i} className="flex flex-col sm:flex-row sm:items-start gap-2 sm:gap-16 py-10"
-            style={{ borderTop: "1px solid var(--rule)" }}>
-            <div style={{ minWidth: "180px" }}>
-              <p style={{
-                fontFamily: "'Cormorant Garamond', Georgia, serif",
-                fontSize: "1.5rem",
-                fontWeight: 400,
-                color: "var(--off-white)",
-                lineHeight: 1.2,
-              }}>{item.client}</p>
+      <section style={{ padding: "10rem 2.8rem" }}>
+        <Reveal>
+          <p style={{ fontSize: "0.62rem", letterSpacing: "0.28em", textTransform: "uppercase", color: "#b8966e", marginBottom: "6rem" }}>
+            Selected Work
+          </p>
+        </Reveal>
+
+        {/* Single project — Castello */}
+        <Reveal delay={80}>
+          <div style={{ borderTop: "1px solid #1e1b18", paddingTop: "3.5rem", paddingBottom: "3.5rem", display: "grid", gridTemplateColumns: "1fr 1fr", gap: "4rem", alignItems: "end" }}>
+            <div>
+              <p style={{ fontSize: "clamp(2rem, 5vw, 4.5rem)", fontWeight: 300, lineHeight: 1, color: "#e2ddd6", letterSpacing: "-0.01em" }}>
+                Niclas<br />Castello
+              </p>
             </div>
             <div>
-              <p style={{
-                fontFamily: "'Cormorant Garamond', Georgia, serif",
-                fontSize: "1.5rem",
-                fontStyle: "italic",
-                fontWeight: 300,
-                color: "var(--gold-light)",
-                marginBottom: "0.4rem",
-              }}>{item.project}</p>
-              <p className="label" style={{ color: "var(--muted)", letterSpacing: "0.15em" }}>{item.context}</p>
+              <p style={{ fontSize: "clamp(1.2rem, 2.5vw, 2rem)", fontStyle: "italic", fontWeight: 300, color: "#b8966e", lineHeight: 1.2, marginBottom: "1.5rem" }}>
+                La diabolica commedia
+              </p>
+              <p style={{ fontSize: "0.62rem", letterSpacing: "0.2em", textTransform: "uppercase", color: "#3a3530", lineHeight: 2 }}>
+                Art Basel 2026<br />
+                Venice Biennale · 61st International Art Exhibition<br />
+                FàBRICA33, Venice · May–November 2026
+              </p>
             </div>
           </div>
-        ))}
-        <div style={{ borderTop: "1px solid var(--rule)" }} />
+        </Reveal>
+
+        <div style={{ borderTop: "1px solid #1e1b18" }} />
+
+        <Reveal delay={100}>
+          <p style={{ fontSize: "0.62rem", letterSpacing: "0.2em", textTransform: "uppercase", color: "#2e2b28", marginTop: "3rem" }}>
+            Further mandates disclosed upon request
+          </p>
+        </Reveal>
       </section>
 
-      {/* DIVIDER */}
-      <div className="px-10"><hr className="rule-full" /></div>
+      {/* RULE */}
+      <div style={{ borderTop: "1px solid #1e1b18", margin: "0 2.8rem" }} />
 
-      {/* APPROACH */}
-      <section className="px-10 py-28 max-w-4xl mx-auto">
-        <p className="label mb-12" style={{ letterSpacing: "0.25em" }}>Approach</p>
-        <div className="grid grid-cols-1 sm:grid-cols-3 gap-12">
-          {[
-            {
-              label: "Press & Editorial",
-              body: "Placements in leading art, culture, and market publications. Relationships built over years across legacy and emerging media.",
-            },
-            {
-              label: "Private Communications",
-              body: "Bespoke correspondence to collectors, curators, and institutional figures. Direct, personal, and properly addressed.",
-            },
-            {
-              label: "Market Intelligence",
-              body: "Active monitoring of the cultural landscape. We identify the right moment, the right interlocutor, and the right message.",
-            },
-          ].map((item, i) => (
-            <div key={i}>
-              <p className="label mb-5" style={{ letterSpacing: "0.2em" }}>{item.label}</p>
-              <p style={{
-                fontFamily: "'Cormorant Garamond', Georgia, serif",
-                fontSize: "1.15rem",
-                fontWeight: 300,
-                color: "var(--muted)",
-                lineHeight: 1.9,
-              }}>{item.body}</p>
-            </div>
-          ))}
-        </div>
+      {/* MEDIA — just names, very small */}
+      <section style={{ padding: "8rem 2.8rem" }}>
+        <Reveal>
+          <p style={{ fontSize: "0.62rem", letterSpacing: "0.28em", textTransform: "uppercase", color: "#b8966e", marginBottom: "3.5rem" }}>
+            Media
+          </p>
+        </Reveal>
+        <Reveal delay={80}>
+          <div style={{ display: "flex", flexWrap: "wrap", gap: "0 3.5rem", rowGap: "1rem" }}>
+            {["Artforum", "The Art Newspaper", "Artnet", "Hyperallergic", "Decrypt", "crypto.news"].map((o) => (
+              <span key={o} style={{ fontSize: "1.1rem", fontWeight: 300, color: "#3a3530", letterSpacing: "0.04em", lineHeight: 1.6 }}>
+                {o}
+              </span>
+            ))}
+          </div>
+        </Reveal>
       </section>
 
-      {/* DIVIDER */}
-      <div className="px-10"><hr className="rule-full" /></div>
-
-      {/* PRESS */}
-      <section className="px-10 py-20 max-w-4xl mx-auto">
-        <p className="label mb-10 text-center" style={{ letterSpacing: "0.25em" }}>Media</p>
-        <div className="flex flex-wrap justify-center gap-x-10 gap-y-4">
-          {PRESS_OUTLETS.map((outlet, i) => (
-            <span key={i} style={{
-              fontFamily: "'Cormorant Garamond', Georgia, serif",
-              fontSize: "1.05rem",
-              fontWeight: 400,
-              color: "var(--muted)",
-              letterSpacing: "0.05em",
-            }}>{outlet}</span>
-          ))}
-        </div>
-      </section>
-
-      {/* DIVIDER */}
-      <div className="px-10"><hr className="rule-full" /></div>
+      {/* RULE */}
+      <div style={{ borderTop: "1px solid #1e1b18", margin: "0 2.8rem" }} />
 
       {/* INQUIRE */}
-      <section id="inquire" className="px-10 py-28 max-w-xl mx-auto text-center">
-        <p className="label mb-4" style={{ letterSpacing: "0.25em" }}>Inquire</p>
-        <hr className="rule mb-10" />
-        <p style={{
-          fontFamily: "'Cormorant Garamond', Georgia, serif",
-          fontSize: "1.15rem",
-          fontWeight: 300,
-          color: "var(--muted)",
-          lineHeight: 1.9,
-          marginBottom: "2.5rem",
-        }}>
-          Go On PR accepts a limited number of mandates per year. Introductions are by referral or direct invitation. We will respond to all qualified inquiries.
-        </p>
+      <section id="inquire" style={{ padding: "10rem 2.8rem", maxWidth: "640px" }}>
+        <Reveal>
+          <p style={{ fontSize: "0.62rem", letterSpacing: "0.28em", textTransform: "uppercase", color: "#b8966e", marginBottom: "4rem" }}>
+            Inquire
+          </p>
+        </Reveal>
+        <Reveal delay={80}>
+          <p style={{ fontSize: "clamp(1.4rem, 3vw, 2.2rem)", fontWeight: 300, lineHeight: 1.5, color: "#6b6158", marginBottom: "5rem", letterSpacing: "0.01em" }}>
+            Go On PR accepts a limited number of mandates each year.
+            Introductions by referral or direct invitation are preferred.
+          </p>
+        </Reveal>
 
         {submitted ? (
-          <div>
-            <hr className="rule mb-8" />
-            <p style={{
-              fontFamily: "'Cormorant Garamond', Georgia, serif",
-              fontSize: "1.3rem",
-              fontWeight: 300,
-              color: "var(--gold-light)",
-              letterSpacing: "0.03em",
-            }}>
-              Your inquiry has been received.<br />
-              <em>We will be in touch.</em>
+          <Reveal>
+            <p style={{ fontSize: "clamp(1.4rem, 3vw, 2rem)", fontWeight: 300, fontStyle: "italic", color: "#b8966e", lineHeight: 1.6 }}>
+              Received.<br />We will be in touch.
             </p>
-            <hr className="rule mt-8" />
-          </div>
+          </Reveal>
         ) : (
-          <form onSubmit={handleSubmit} className="flex flex-col gap-5 text-left">
-            {[
-              { key: "name", label: "Name", type: "text", placeholder: "Your full name" },
-              { key: "organization", label: "Organization", type: "text", placeholder: "Gallery, institution, or studio" },
-              { key: "email", label: "Email", type: "email", placeholder: "your@email.com" },
-            ].map(({ key, label, type, placeholder }) => (
-              <div key={key}>
-                <label className="label block mb-2" style={{ letterSpacing: "0.2em" }}>{label}</label>
+          <Reveal delay={120}>
+            <form onSubmit={(e) => { e.preventDefault(); setSubmitted(true); }} style={{ display: "flex", flexDirection: "column", gap: "2.5rem" }}>
+              {[
+                { val: name, set: setName, placeholder: "Name", type: "text" },
+                { val: email, set: setEmail, placeholder: "Email", type: "email" },
+              ].map(({ val, set, placeholder, type }) => (
                 <input
+                  key={placeholder}
                   type={type}
                   required
                   placeholder={placeholder}
-                  value={form[key as keyof typeof form]}
-                  onChange={e => setForm(f => ({ ...f, [key]: e.target.value }))}
+                  value={val}
+                  onChange={e => set(e.target.value)}
                   style={{
-                    width: "100%",
                     background: "transparent",
                     border: "none",
-                    borderBottom: "1px solid var(--rule)",
-                    color: "var(--off-white)",
+                    borderBottom: "1px solid #1e1b18",
+                    color: "#e2ddd6",
                     fontFamily: "'Cormorant Garamond', Georgia, serif",
-                    fontSize: "1.05rem",
+                    fontSize: "1.15rem",
                     fontWeight: 300,
-                    padding: "0.6rem 0",
+                    padding: "0.5rem 0",
                     outline: "none",
                     letterSpacing: "0.02em",
+                    width: "100%",
                   }}
                 />
-              </div>
-            ))}
-            <div>
-              <label className="label block mb-2" style={{ letterSpacing: "0.2em" }}>Message</label>
+              ))}
               <textarea
                 required
-                rows={4}
-                placeholder="Briefly describe your project or inquiry"
-                value={form.message}
-                onChange={e => setForm(f => ({ ...f, message: e.target.value }))}
+                placeholder="Your project or inquiry"
+                rows={3}
+                value={note}
+                onChange={e => setNote(e.target.value)}
                 style={{
-                  width: "100%",
                   background: "transparent",
                   border: "none",
-                  borderBottom: "1px solid var(--rule)",
-                  color: "var(--off-white)",
+                  borderBottom: "1px solid #1e1b18",
+                  color: "#e2ddd6",
                   fontFamily: "'Cormorant Garamond', Georgia, serif",
-                  fontSize: "1.05rem",
+                  fontSize: "1.15rem",
                   fontWeight: 300,
-                  padding: "0.6rem 0",
+                  padding: "0.5rem 0",
                   outline: "none",
                   resize: "none",
                   letterSpacing: "0.02em",
+                  width: "100%",
                 }}
               />
-            </div>
-            <div className="text-center mt-4">
-              <button type="submit" style={{
-                display: "inline-block",
-                padding: "0.85rem 2.5rem",
-                border: "1px solid var(--gold)",
-                color: "var(--gold)",
-                fontFamily: "'Cormorant Garamond', Georgia, serif",
-                fontSize: "0.7rem",
-                letterSpacing: "0.25em",
-                textTransform: "uppercase",
-                background: "transparent",
-                cursor: "pointer",
-                transition: "background 0.3s, color 0.3s",
-              }}
-                onMouseEnter={e => {
-                  (e.target as HTMLElement).style.background = "var(--gold)";
-                  (e.target as HTMLElement).style.color = "var(--black)";
-                }}
-                onMouseLeave={e => {
-                  (e.target as HTMLElement).style.background = "transparent";
-                  (e.target as HTMLElement).style.color = "var(--gold)";
-                }}>
-                Submit Inquiry
-              </button>
-            </div>
-          </form>
+              <div>
+                <button
+                  type="submit"
+                  style={{
+                    background: "none",
+                    border: "none",
+                    color: "#9a8c7e",
+                    fontFamily: "'Cormorant Garamond', Georgia, serif",
+                    fontSize: "0.62rem",
+                    letterSpacing: "0.28em",
+                    textTransform: "uppercase",
+                    cursor: "pointer",
+                    padding: 0,
+                    borderBottom: "1px solid #2e2b28",
+                    paddingBottom: "2px",
+                  }}
+                >
+                  Send →
+                </button>
+              </div>
+            </form>
+          </Reveal>
         )}
       </section>
 
       {/* FOOTER */}
-      <footer className="px-10 py-12 text-center" style={{ borderTop: "1px solid var(--rule)" }}>
-        <p className="label" style={{ letterSpacing: "0.35em", color: "var(--muted)" }}>
-          GO ON PR
-        </p>
-        <p style={{
-          fontFamily: "'Cormorant Garamond', Georgia, serif",
-          fontSize: "0.85rem",
-          color: "var(--muted)",
-          marginTop: "0.75rem",
-          letterSpacing: "0.05em",
-        }}>
-          Paris · <a href="mailto:Dorian.batycka@gmail.com" style={{ color: "var(--muted)", textDecoration: "none" }}>
-            Dorian.batycka@gmail.com
-          </a>
-        </p>
-        <p style={{
-          fontFamily: "'Cormorant Garamond', Georgia, serif",
-          fontSize: "0.75rem",
-          color: "rgba(107, 101, 96, 0.4)",
-          marginTop: "2rem",
-          letterSpacing: "0.1em",
-        }}>
-          © 2026 Go On PR. All rights reserved.
-        </p>
+      <footer style={{ borderTop: "1px solid #1e1b18", padding: "3rem 2.8rem", display: "flex", justifyContent: "space-between", alignItems: "center" }}>
+        <span style={{ fontSize: "0.62rem", letterSpacing: "0.32em", textTransform: "uppercase", color: "#2e2b28" }}>
+          Go On PR
+        </span>
+        <a href="mailto:Dorian.batycka@gmail.com" style={{ fontSize: "0.62rem", letterSpacing: "0.16em", color: "#2e2b28", textDecoration: "none" }}>
+          Dorian.batycka@gmail.com
+        </a>
       </footer>
 
     </main>
