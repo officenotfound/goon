@@ -140,8 +140,6 @@ export default function Home() {
             letterSpacing:"0.01em",
             transition:"color 0.5s",
           }}>
-            Go On PR is the practice of Dorian Batycka — writer, editor, and curator
-            whose work appears in Artforum, The Art Newspaper, Artnet, and Hyperallergic.
             We work with artists, institutions, and collectors at the precise moment
             culture is being made, not after the fact. A boutique of one.
             Mandates are limited and by introduction only.
