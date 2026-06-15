@@ -125,7 +125,7 @@ export default function Home() {
                 <span style={{ color:t.text, marginRight:`${gap}em`, transition:"color 0.5s" }}>Go</span>
                 <span style={{ color:t.accent, fontStyle:"italic", transition:"color 0.5s" }}>on</span>
               </div>
-              <div style={{ fontSize:"0.35em", marginTop:"-0.05em", marginLeft:"0.35em", letterSpacing:"0.04em", color:t.text, transition:"color 0.5s" }}>PR</div>
+              <div style={{ fontSize:"0.28em", marginTop:"-0.05em", marginLeft:"0.35em", letterSpacing:"0.04em", color:t.text, transition:"color 0.5s" }}>PR</div>
             </div>
           </div>
         </section>
