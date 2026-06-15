@@ -65,7 +65,7 @@ const D = {
 };
 
 const SERIF = "var(--font-serif), 'Instrument Serif', Georgia, serif";
-const MONO  = "var(--font-mono), 'Space Mono', 'Courier New', monospace";
+const MONO  = "var(--font-sans), 'Josefin Sans', Futura, 'Century Gothic', sans-serif";
 
 export default function Home() {
   const [mode, setMode] = useState<"dark"|"light">("dark");
