@@ -108,19 +108,21 @@ export default function Home() {
       {/* HERO */}
       <section style={{ height: "100svh", display: "flex", flexDirection: "column", justifyContent: "flex-end", padding: "0 2.8rem 3rem" }}>
         <div style={{ flex: 1, display: "flex", flexDirection: "column", justifyContent: "center" }}>
-          <div style={{
-            opacity: heroIn ? 1 : 0,
-            transform: heroIn ? "none" : "translateY(50px)",
-            transition: "opacity 2s cubic-bezier(0.16,1,0.3,1) 200ms, transform 2s cubic-bezier(0.16,1,0.3,1) 200ms",
-            userSelect: "none",
+          <h1 style={{
+            fontSize: "clamp(5rem, 18vw, 20rem)",
+            fontWeight: 300,
             lineHeight: 0.88,
             letterSpacing: "-0.02em",
-            fontWeight: 300,
+            color: t.text,
+            opacity: heroIn ? 1 : 0,
+            transform: heroIn ? "none" : "translateY(50px)",
+            transition: "opacity 2s cubic-bezier(0.16,1,0.3,1) 200ms, transform 2s cubic-bezier(0.16,1,0.3,1) 200ms, color 0.5s",
+            userSelect: "none",
           }}>
-            <div style={{ fontSize: "clamp(5rem, 18vw, 20rem)", color: t.text, transition: "color 0.5s" }}>Go</div>
-            <div style={{ fontSize: "clamp(5rem, 18vw, 20rem)", color: t.gold, fontStyle: "italic", transition: "color 0.5s" }}>on</div>
-            <div style={{ fontSize: "clamp(5rem, 18vw, 20rem)", color: t.text, transition: "color 0.5s" }}>PR</div>
-          </div>
+            Go<br />
+            <em style={{ color: t.gold, fontStyle: "italic", transition: "color 0.5s" }}>on</em><br />
+            PR
+          </h1>
         </div>
 
         <div style={{
