@@ -48,19 +48,19 @@ function Curtain({ bg }: { bg: string }) {
 const D = {
   dark: {
     bg:     "#000000",
-    text:   "#cccac4",          // cool off-white
-    accent: "#8ab48a",          // phosphor sage — cypherpunk terminal, desaturated for couture
-    muted:  "#38403a",          // very dark, almost invisible
-    dim:    "#505850",          // mid dark cool-green-grey
-    rule:   "#111412",          // barely-there divider
+    text:   "#c8c8c8",
+    accent: "#ffffff",
+    muted:  "#2a2a2a",
+    dim:    "#4a4a4a",
+    rule:   "#111111",
   },
   light: {
-    bg:     "#f0f0ec",          // cold paper
-    text:   "#0d0e0c",
-    accent: "#3a6e3a",          // forest green
-    muted:  "#b0b4ac",
-    dim:    "#686e64",
-    rule:   "#dcddd8",
+    bg:     "#f0f0f0",
+    text:   "#111111",
+    accent: "#000000",
+    muted:  "#d0d0d0",
+    dim:    "#888888",
+    rule:   "#e0e0e0",
   },
 };
 
