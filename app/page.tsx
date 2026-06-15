@@ -155,26 +155,6 @@ export default function Home() {
           </p>
         </section>
 
-        {/* ── Work ── */}
-        <section style={{ padding:"0 2.8rem 16rem" }}>
-          <div style={{ borderTop:`1px solid ${t.rule}`, paddingTop:"4rem", transition:"border-color 0.6s" }}>
-            <div style={{ display:"grid", gridTemplateColumns:"1fr 1fr", gap:"0 4rem", alignItems:"end" }}>
-              <p style={{ fontSize:"clamp(2.2rem, 5vw, 4.5rem)", fontFamily:SERIF, fontWeight:400, lineHeight:0.95, letterSpacing:"-0.02em", color:t.text, transition:"color 0.6s" }}>
-                Niclas<br />Castello
-              </p>
-              <div>
-                <p style={{ fontSize:"clamp(1rem, 2vw, 1.5rem)", fontFamily:SERIF, fontStyle:"italic", color:t.accent, lineHeight:1.2, marginBottom:"2rem", transition:"color 0.6s" }}>
-                  La diabolica commedia
-                </p>
-                <p style={{ fontFamily:MONO, fontSize:"0.6rem", letterSpacing:"0.12em", color:t.muted, lineHeight:2.4, transition:"color 0.6s" }}>
-                  ART BASEL 2026<br />
-                  61ST VENICE BIENNALE<br />
-                  FÀBRICA33 · MAY–NOV 2026
-                </p>
-              </div>
-            </div>
-          </div>
-        </section>
 
         {/* ── Contact ── */}
         <section style={{ padding:"0 2.8rem 20rem" }}>
