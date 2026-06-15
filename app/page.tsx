@@ -119,17 +119,9 @@ export default function Home() {
   return (
     <>
       <style>{`
-        @keyframes goDown {
-          0%, 30%, 70%, 100% { transform: translateY(0px); }
-          50% { transform: translateY(32px); }
-        }
-        @keyframes onUp {
-          0%, 30%, 70%, 100% { transform: translateY(0px); }
-          50% { transform: translateY(-32px); }
-        }
-        @keyframes prDrift {
-          0%, 30%, 70%, 100% { transform: translateY(0px); }
-          50% { transform: translateY(18px); }
+        @keyframes goonMerge {
+          0%, 30%, 70%, 100% { margin-right: 0.18em; }
+          50% { margin-right: 0em; }
         }
         @keyframes ticker { from { transform: translateX(0); } to { transform: translateX(-50%); } }
       `}</style>
@@ -174,13 +166,13 @@ export default function Home() {
               transition: "opacity 2s cubic-bezier(0.16,1,0.3,1) 200ms",
               userSelect: "none",
             }}>
-              {/* Go + on breathe together — briefly reads as "Goon" */}
-              <div style={{ lineHeight: 0.82 }}>
-                <span style={{ display: "block", color: t.text, transition: "color 0.5s", animation: heroIn ? "goDown 9s cubic-bezier(0.45,0,0.55,1) infinite" : "none", willChange: "transform" }}>Go</span>
-                <span style={{ display: "block", color: t.gold, fontStyle: "italic", transition: "color 0.5s", animation: heroIn ? "onUp 9s cubic-bezier(0.45,0,0.55,1) infinite" : "none", willChange: "transform" }}>on</span>
+              {/* Go on — same line, gap breathes closed to briefly read "Goon" */}
+              <div style={{ display: "flex", alignItems: "baseline", lineHeight: 0.9 }}>
+                <span style={{ color: t.text, transition: "color 0.5s", animation: heroIn ? "goonMerge 9s cubic-bezier(0.45,0,0.55,1) infinite" : "none" }}>Go</span>
+                <span style={{ color: t.gold, fontStyle: "italic", transition: "color 0.5s" }}>on</span>
               </div>
-              {/* PR — smaller, pushed down, drifts with the motion */}
-              <span style={{ display: "block", fontSize: "0.55em", color: t.text, marginTop: "0.55em", letterSpacing: "0.02em", transition: "color 0.5s", animation: heroIn ? "prDrift 9s cubic-bezier(0.45,0,0.55,1) infinite" : "none", willChange: "transform" }}>PR</span>
+              {/* PR — smaller, sits below */}
+              <span style={{ display: "block", fontSize: "0.55em", color: t.text, marginTop: "0.4em", letterSpacing: "0.02em", transition: "color 0.5s" }}>PR</span>
             </div>
           </div>
 
