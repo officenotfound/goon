@@ -47,7 +47,7 @@ function Curtain({ bg }: { bg: string }) {
 /* ── Theme ── */
 const D = {
   dark: {
-    bg:     "#07080a",          // near-black, slight cool undertone
+    bg:     "#000000",
     text:   "#cccac4",          // cool off-white
     accent: "#8ab48a",          // phosphor sage — cypherpunk terminal, desaturated for couture
     muted:  "#38403a",          // very dark, almost invisible
