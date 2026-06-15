@@ -125,7 +125,7 @@ export default function Home() {
                 <span style={{ color:t.text, marginRight:`${gap}em`, transition:"color 0.5s" }}>Go</span>
                 <span style={{ color:t.accent, fontStyle:"italic", transition:"color 0.5s" }}>on</span>
               </div>
-              <div style={{ fontSize:"0.28em", marginTop:"-0.05em", marginLeft:"0.35em", letterSpacing:"0.04em", color:t.text, transition:"color 0.5s" }}>PR</div>
+              <div style={{ fontSize:"0.22em", marginTop:"-0.05em", marginLeft:"0.35em", letterSpacing:"0.04em", color:t.text, transition:"color 0.5s" }}>PR</div>
             </div>
           </div>
         </section>
@@ -173,7 +173,7 @@ export default function Home() {
             Introductions by referral<br />or direct invitation.
           </p>
           <a href="mailto:Dorian@goonpr.com" style={{
-            fontSize:"0.6rem", letterSpacing:"0.2em", textTransform:"uppercase",
+            fontSize:"0.85rem", letterSpacing:"0.2em", textTransform:"uppercase",
             color:t.muted, textDecoration:"none", transition:"color 0.4s",
           }}
             onMouseEnter={e => e.currentTarget.style.color = t.text}
