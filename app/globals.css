@@ -3,6 +3,14 @@
 *, *::before, *::after {
   box-sizing: border-box;
   cursor: none !important;
+  text-align: left;
+}
+
+@media (max-width: 640px) {
+  section, footer, nav {
+    padding-left: 1.4rem !important;
+    padding-right: 1.4rem !important;
+  }
 }
 
 html {

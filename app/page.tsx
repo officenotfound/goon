@@ -98,7 +98,7 @@ export default function Home() {
       <Cursor color={t.accent} />
       <Curtain bg={t.bg} />
 
-      <main style={{ background:t.bg, color:t.text, fontFamily:SERIF, minHeight:"100vh", transition:"background 0.6s, color 0.6s" }}>
+      <main style={{ background:t.bg, color:t.text, fontFamily:SERIF, minHeight:"100vh", transition:"background 0.6s, color 0.6s", textAlign:"left" }}>
 
         {/* ── Toggle ── */}
         <button onClick={toggle} style={{
