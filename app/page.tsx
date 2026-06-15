@@ -120,7 +120,7 @@ export default function Home() {
             userSelect: "none",
           }}>
             Go<br />
-            <em style={{ color: t.gold, fontStyle: "italic", fontSize: "0.38em", letterSpacing: "0.05em", lineHeight: 1.8, display: "block", transition: "color 0.5s" }}>on</em>
+            <span style={{ color: t.gold, fontStyle: "italic", fontSize: "0.38em", letterSpacing: "0.05em", lineHeight: 1.8, display: "block", fontVariant: "normal", textTransform: "none", transition: "color 0.5s" }}>on</span>
             PR
           </h1>
         </div>
