@@ -105,10 +105,10 @@ export default function Home() {
           position:"fixed", top:"2rem", right:"2.8rem", zIndex:100,
           background:"none", border:"none", padding:0,
           fontFamily:MONO, fontSize:"0.55rem", letterSpacing:"0.12em",
-          color:t.muted, transition:"color 0.4s",
+          color:t.dim, transition:"color 0.4s",
         }}
-          onMouseEnter={e => e.currentTarget.style.color = t.dim}
-          onMouseLeave={e => e.currentTarget.style.color = t.muted}
+          onMouseEnter={e => e.currentTarget.style.color = t.text}
+          onMouseLeave={e => e.currentTarget.style.color = t.dim}
         >
           {mode === "dark" ? "[ light ]" : "[ dark ]"}
         </button>
@@ -178,10 +178,10 @@ export default function Home() {
 
         {/* ── Footer ── */}
         <footer style={{ padding:"2rem 2.8rem", display:"flex", justifyContent:"space-between" }}>
-          <span style={{ fontFamily:MONO, fontSize:"0.5rem", letterSpacing:"0.15em", color:t.rule, transition:"color 0.6s" }}>
+          <span style={{ fontFamily:MONO, fontSize:"0.5rem", letterSpacing:"0.15em", color:t.dim, transition:"color 0.6s" }}>
             © 2026 GO ON PR
           </span>
-          <span style={{ fontFamily:MONO, fontSize:"0.5rem", letterSpacing:"0.15em", color:t.rule, transition:"color 0.6s" }}>
+          <span style={{ fontFamily:MONO, fontSize:"0.5rem", letterSpacing:"0.15em", color:t.dim, transition:"color 0.6s" }}>
             PARIS
           </span>
         </footer>
