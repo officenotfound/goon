@@ -76,7 +76,7 @@ export default function Home() {
   useEffect(() => {
     const s = localStorage.getItem("goon-theme") as "dark"|"light"|null;
     if (s) setMode(s);
-    else if (window.matchMedia("(prefers-color-scheme: light)").matches) setMode("light");
+    // default always dark unless user has explicitly saved light
     setTimeout(() => setIn1(true), 900);
 
     const onScroll = () => {
