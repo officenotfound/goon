@@ -119,9 +119,8 @@ export default function Home() {
   return (
     <>
       <style>{`
-        @keyframes floatA { 0%,100% { transform: translateY(0px); } 50% { transform: translateY(-8px); } }
-        @keyframes floatB { 0%,100% { transform: translateY(0px); } 50% { transform: translateY(-6px); } }
-        @keyframes floatC { 0%,100% { transform: translateY(0px); } 50% { transform: translateY(-10px); } }
+        @keyframes goDown  { 0%,100% { transform: translateY(0px); } 50% { transform: translateY(14px); } }
+        @keyframes onUp    { 0%,100% { transform: translateY(0px); } 50% { transform: translateY(-14px); } }
         @keyframes ticker  { from { transform: translateX(0); } to { transform: translateX(-50%); } }
       `}</style>
 
@@ -166,9 +165,9 @@ export default function Home() {
               transition: "opacity 2s cubic-bezier(0.16,1,0.3,1) 200ms",
               userSelect: "none",
             }}>
-              <span style={{ display: "block", color: t.text, transition: "color 0.5s", animation: heroIn ? "floatA 7s ease-in-out infinite" : "none", willChange: "transform" }}>Go</span>
-              <span style={{ display: "block", color: t.gold, fontStyle: "italic", transition: "color 0.5s", animation: heroIn ? "floatB 7s ease-in-out 0.4s infinite" : "none", willChange: "transform" }}>on</span>
-              <span style={{ display: "block", color: t.text, transition: "color 0.5s", animation: heroIn ? "floatC 7s ease-in-out 0.8s infinite" : "none", willChange: "transform" }}>PR</span>
+              <span style={{ display: "block", color: t.text, transition: "color 0.5s", animation: heroIn ? "goDown 5s ease-in-out infinite" : "none", willChange: "transform" }}>Go</span>
+              <span style={{ display: "block", color: t.gold, fontStyle: "italic", transition: "color 0.5s", animation: heroIn ? "onUp 5s ease-in-out infinite" : "none", willChange: "transform" }}>on</span>
+              <span style={{ display: "block", fontSize: "0.65em", color: t.text, transition: "color 0.5s" }}>PR</span>
             </h1>
           </div>
 
