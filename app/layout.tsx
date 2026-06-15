@@ -20,6 +20,7 @@ const josefinSans = Josefin_Sans({
 export const metadata: Metadata = {
   title: "Go On PR",
   description: "Private communications for artists, institutions, and collectors.",
+  themeColor: "#000000",
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
