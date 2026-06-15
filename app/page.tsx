@@ -69,6 +69,7 @@ const FONT = "var(--font-instrument), 'Instrument Serif', Georgia, serif";
 export default function Home() {
   const [mode, setMode] = useState<"dark"|"light">("dark");
   const [in1, setIn1] = useState(false);
+  const [gap, setGap] = useState(0.18);
   const t = D[mode];
 
   useEffect(() => {
@@ -76,6 +77,13 @@ export default function Home() {
     if (s) setMode(s);
     else if (window.matchMedia("(prefers-color-scheme: light)").matches) setMode("light");
     setTimeout(() => setIn1(true), 900);
+
+    const onScroll = () => {
+      const progress = Math.min(window.scrollY / (window.innerHeight * 0.82), 1);
+      setGap(0.18 - 0.17 * progress);
+    };
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
   function toggle() {
@@ -86,12 +94,6 @@ export default function Home() {
 
   return (
     <>
-      <style>{`
-        @keyframes goonMerge {
-          0%, 35%, 65%, 100% { margin-right: 0.14em; }
-          50% { margin-right: 0.01em; }
-        }
-      `}</style>
 
       <Cursor color={t.muted} />
       <Curtain bg={t.bg} />
@@ -120,7 +122,7 @@ export default function Home() {
           }}>
             <div style={{ fontSize:"clamp(5.5rem, 19vw, 22rem)", fontWeight:400, lineHeight:0.88, letterSpacing:"-0.025em" }}>
               <div style={{ display:"flex", alignItems:"baseline" }}>
-                <span style={{ color:t.text, transition:"color 0.5s", animation: in1 ? "goonMerge 38s cubic-bezier(0.45,0,0.55,1) infinite" : "none" }}>Go</span>
+                <span style={{ color:t.text, marginRight:`${gap}em`, transition:"color 0.5s" }}>Go</span>
                 <span style={{ color:t.accent, fontStyle:"italic", transition:"color 0.5s" }}>on</span>
               </div>
               <div style={{ fontSize:"0.35em", marginTop:"-0.05em", marginLeft:"0.35em", letterSpacing:"0.04em", color:t.text, transition:"color 0.5s" }}>PR</div>
