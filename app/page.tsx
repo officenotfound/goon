@@ -68,20 +68,27 @@ const SERIF = "var(--font-serif), 'Instrument Serif', Georgia, serif";
 const MONO  = "var(--font-sans), 'Josefin Sans', Futura, 'Century Gothic', sans-serif";
 
 export default function Home() {
-  const [mode, setMode] = useState<"dark"|"light">("dark");
-  const [in1,  setIn1]  = useState(false);
-  const [gap,  setGap]  = useState(0.18);
+  const [mode,    setMode]    = useState<"dark"|"light">("dark");
+  const [in1,     setIn1]     = useState(false);
+  const [gap,     setGap]     = useState(0.18);
+  const [flashed, setFlashed] = useState(false);
+  const merged = useRef(false);
   const t = D[mode];
 
   useEffect(() => {
     const s = localStorage.getItem("goon-theme") as "dark"|"light"|null;
     if (s) setMode(s);
-    // default always dark unless user has explicitly saved light
     setTimeout(() => setIn1(true), 900);
 
     const onScroll = () => {
       const progress = Math.min(window.scrollY / (window.innerHeight * 0.82), 1);
       setGap(0.18 - 0.17 * progress);
+      if (progress === 1 && !merged.current) {
+        merged.current = true;
+        setFlashed(true);
+        setTimeout(() => setFlashed(false), 2000);
+      }
+      if (progress < 1) merged.current = false;
     };
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
@@ -131,7 +138,7 @@ export default function Home() {
                 letterSpacing:"0.25em",
                 color:t.muted,
                 textTransform:"uppercase",
-                transition:"color 0.6s",
+                animation: flashed ? "pr-flash 1.8s cubic-bezier(0.16,1,0.3,1) forwards" : "none",
               }}>PR</div>
 
             </div>
