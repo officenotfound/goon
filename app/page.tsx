@@ -127,7 +127,7 @@ export default function Home() {
                 fontFamily:MONO,
                 fontSize:"0.18em",
                 marginTop:"0.1em",
-                marginLeft:"3.5vw",
+                marginLeft:"3vw",
                 letterSpacing:"0.25em",
                 color:t.muted,
                 textTransform:"uppercase",
